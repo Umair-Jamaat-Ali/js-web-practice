@@ -8,18 +8,32 @@
     const inputElem = document.getElementById("searchInput");
     const btnElem = document.getElementById("searchBtn");
     const listElem = document.getElementById("recipe-list");
-    listElem.innerHTML = "" ;
+    const recipesDetailsElem = document.getElementById("recipeDetailsContainer");
+
+    function loadRecipesDetails(recipe) {
+        console.log(recipe);
+        recipesDetailsElem.innerHTML = `
+        <h2 class='title'>${recipe.title}</h2>
+     <div>${recipe.description}</div>
+        `;
+    }
+    
         
-    const li = document.createElement("li");
+   
 
     function displaySreachResult(results){
+        listElem.innerHTML = "" ;
         results.forEach(function (recipe) {
-           const listItem = `
-           <div class='title'>${recipe.title}</div>
-           <div class='description'>${recipe.description}</div>
+            const li = document.createElement("li");
+        //    const listItem = `
+        //    <div class='title'>${recipe.title}</div>
+        //    <div class='description'>${recipe.description}</div>
            
-           `;
-           li.innerHTML = document.createTextNode(listItem);
+        //    `;
+           li.innerHTML = recipe.title;
+           li.addEventListener("click", function () {
+            loadRecipesDetails(recipe);
+           });
            listElem.appendChild(li);
         })
     }
