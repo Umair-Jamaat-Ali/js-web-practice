@@ -9,17 +9,21 @@
     const btnElem = document.getElementById("searchBtn");
     const listElem = document.getElementById("recipe-list");
     const recipesDetailsElem = document.getElementById("recipeDetailsContainer");
-
+/// 3rd step or 3rd function
     function loadRecipesDetails(recipe) {
         console.log(recipe);
         recipesDetailsElem.innerHTML = `
         <h2 class='title'>${recipe.title}</h2>
-     <div>${recipe.description}</div>
+     <ul>${recipe.ingredients.map(function(ingredients){
+        return "<li>" +ingredients + "</li>"
+     }).join(" ")}</ulv>
+     <h3> Instruction</h3>
+     <div>${recipe.instructions} </div>
         `;
     }
     
         
-   
+   // 2nd step or 2nd function
 
     function displaySreachResult(results){
         listElem.innerHTML = "" ;
@@ -38,10 +42,10 @@
         })
     }
 
-
+    // 1step or 1 function
         function search() {
             
-            const query = inputElem.value;
+            const query = inputElem.value.title.toLowerCase();
             // console.log(query);
             const results = recipes.filter(function (recipes) {
                 return (recipes.title.toLowerCase().includes(query) || 
