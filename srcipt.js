@@ -7,6 +7,23 @@
 
     const inputElem = document.getElementById("searchInput");
     const btnElem = document.getElementById("searchBtn");
+    const listElem = document.getElementById("recipe-list");
+    listElem.innerHTML = "" ;
+        
+    const li = document.createElement("li");
+
+    function displaySreachResult(results){
+        results.forEach(function (recipe) {
+           const listItem = `
+           <div class='title'>${recipe.title}</div>
+           <div class='description'>${recipe.description}</div>
+           
+           `;
+           li.innerHTML = document.createTextNode(listItem);
+           listElem.appendChild(li);
+        })
+    }
+
 
         function search() {
             
@@ -17,7 +34,7 @@
                 recipes.ingredients.join(" ").toLowerCase().includes(query) );
         });
 
-        console.log(results);
+        displaySreachResult(results);
     }
         btnElem.addEventListener("click", search)
 
